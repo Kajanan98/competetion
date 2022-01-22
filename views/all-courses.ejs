@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/typography.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <title>All Courses</title>
+</head>
+<div class="navbar-container">
+    <div class="navlogo-container">
+        <img style="width: 150px;" src="../assets/logo.png">
+    </div>
+    <div class="nav-btn-container">
+        <a href="/user/home" class="nav-link narrow">
+            <p>Home</p>
+        </a>
+        <a href="/course/allcourses?userId=<%= userId %>" class="active narrow">
+            <p>All Courses</p>
+        </a>
+        <a href="/course/enrolled?userId=<%= userId %>" class="nav-link narrow">
+            <p>Enrolled</p>
+        </a>
+        <form action="/user/signout" method="POST">
+            <div>
+                <span class="divider">| </span><button class="signout"> Logout</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="search-box-container">
+    <form action="/course/search" method="POST">
+        <input name="searchVal" type="text" placeholder="Course Name" style="width: 400px;">
+        <button class="btn" style="margin-top: 0px; margin-left: -140px; border-color: white;">Search</button>
+        <p class="narrow links" style="color: #929497; margin-top: -10px; margin-left: 30px;">
+            <%= allcourses.length %> Courses
+        </p>
+    </form>
+    <div class="sorting-container">
+        <div>
+            <a href="/course/sort?criteria=name"><button class="sort">Sort by Name</button></a>
+        </div>
+        <form action="/sortlevel" method="POST">
+            <div>
+                <div class="dropdown">
+                    <button type='button' class="sort">Filter by Difficulty Level</button>
+                    <i class="fas fa-cloud"></i>
+                    <div class="dropdown-content">
+                        <a href="/course/sort?criteria=Beginner">Beginner</a>
+                        <a href="/course/sort?criteria=Intermediate">Intermediate</a>
+                        <a href="/course/sort?criteria=Advanced">Advanced</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <a href="/course/allcourses?userId=<%= userId %>"><button class="sort" style="color: #E02401;">Reset</button></a>
+    </div>
+</div>
+<div id="all_courses" class="all-courses-container">
+    <% for(var i=0; i<allcourses.length; i++){ %>
+        <a href="/course/dashboard?courseId=<%= allcourses[i].id %>">
+            <div class="small-card">
+                <div class="card-heading orange narrow">
+                    <div class="card-heading-container">
+                        <p class="card-heading">
+                            <%= allcourses[i].title %>
+                        </p>
+                    </div>
+                    
+                    <p class="level blue">
+                        <%= allcourses[i].level %>
+                    </p>
+                </div>
+            </div>
+        </a>
+        <% } %>
+</div>
+</div>
+</div>
+</body>
+</html>

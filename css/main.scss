@@ -1,0 +1,28 @@
+// Variables
+$accent:#F75D57;
+$base:#311A75;
+$secondary:#FFBE0B;
+
+$dark:#3F3D56;
+$shade:#929497;
+$light:#E9E9E9;
+
+$font-xl:20px;
+$font-l:18px;
+$font-m:14px;
+$font-s:10px;
+
+$border-radious:5px;
+$dropshadow: 2px 1px 10px 0px #00000021;
+
+//General
+
+body{
+    font-size: 12px;
+    color: $dark; 
+    background-color: $accent;
+    margin: 0;
+    padding: 0;
+}
+
+// UI Components

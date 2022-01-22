@@ -1,0 +1,45 @@
+.navbar-container{
+
+}
+
+.navlogo-container{
+    padding: 50px;
+}
+
+.nav-btn-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -120px;
+}
+
+.nav-link{
+    color: #311A75;
+    font-weight: 600;
+    font-size: 20px;
+    margin: 0px 10px 0px 10px;
+    padding: 0px 30px 0px 30px;
+    cursor: pointer;
+}
+
+.nav-link:hover{
+    font-weight: 600;
+    font-size: 20px;
+    margin: 0px 10px 0px 10px;
+    padding: 0px 30px 0px 30px;
+    background-color: #311a7548;
+    color: white;
+    border-radius: 20px;
+}
+
+.active{
+    color: #311A75;
+    font-weight: 600;
+    font-size: 20px;
+    margin: 0px 10px 0px 10px;
+    padding: 0px 30px 0px 30px;
+    cursor: pointer;
+    background-color: #311A75;
+    color: white;
+    border-radius: 20px;
+}

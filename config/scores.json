@@ -1,0 +1,26 @@
+{
+  "bugs": [
+    {
+      "desc": "Challenge 0.a - Wrong password do not expose too much information",
+      "score": 10
+    },
+    {
+      "desc": "Challenge 0.a - User not found do not expose too much information",
+      "score": 10
+    }    
+  ],
+  "features": [
+    {
+      "desc": "Challenge 0.b - Homepage should show only 4 popular courses",
+      "score": 15
+    },
+    {
+      "desc": "Challenge 0.c - New duration column added to courses table",
+      "score": 15
+    },
+    {
+      "desc": "Challenge 0.c - Course dashboard shows course duration",
+      "score": 20
+    }
+  ]
+}

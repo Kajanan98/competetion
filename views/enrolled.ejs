@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/typography.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <title>Enrolled Courses</title>
+</head>
+
+<body style="background-color: #F9F9F9;">
+    <div class="navbar-container">
+        <div class="navlogo-container">
+            <img style="width: 150px;" src="../assets/logo.png">
+        </div>
+        <div class="nav-btn-container">
+            <a href="/user/home" class="nav-link narrow">
+                <p>Home</p>
+            </a>
+            <a href="/course/allcourses?userId=<%= userId %>" class="nav-link narrow">
+                <p>All Courses</p>
+            </a>
+            <a href="/course/enrolled?userId=<%= userId %>" class="active narrow">
+                <p>Enrolled</p>
+            </a>
+            <form action="/user/signout" method="POST">
+                <div>
+                    <span class="divider">| </span><button class="signout"> Logout</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <% if (courses.length<1) {%>
+        <div class="card-container" style="display: flex; justify-content: center; align-items: center;">
+            <p class="empty-informer narrow" style="margin: 0px; padding-top: 200px;">You haven't enrolled in any
+                courses</p>
+        </div>
+        <%} else {%>
+            <div style="margin-top: 50px; display: flex; justify-content: center; align-items: center;"
+                class="dashboard-below-container">
+                <div class="dashboard-left"
+                    style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                    <div>
+                        <a href="/course/reset"><button class="sort" style="color: #E02401;">Disenroll All
+                                Courses</button></a>
+                    </div>
+                    <div class="card-container" style="margin-top: 50px; width: 100%; justify-content: center;">
+                        <% for(var i=0; i<courses.length; i++){ %>
+                            <% if(courses[i].score < 0){ %>
+                                <a href="/course/dashboard?courseId=<%= courses[i].id %>">
+                                    <div class="card">
+                                        <div class="card-heading orange narrow">
+                                            <p class="card-heading">
+                                                <%= courses[i].title %>
+                                            </p>
+                                        </div>
+                                        <div class="progress-container">
+                                            <p class="progress-text blue">Progress <span class="orange">0%</span></p>
+                                            <progress class="progress" id="file" value="0" max="100"> 32% </progress>
+                                        </div>
+                                    </div>
+                                </a>
+                                <% }else{ %>
+                                    <div class="card">
+                                        <div class="card-heading orange narrow">
+                                            <p class="card-heading">
+                                                <%= courses[i].title %>
+                                            </p>
+                                        </div>
+                                        <div class="progress-container">
+                                            <p class="progress-text blue" style="font-size: 23px; margin-top: -20px;">
+                                                Score <span class="orange">
+                                                    <%= courses[i].score %>
+                                                </span></p>
+                                            <p class="progress-text blue" style="margin-top: -20px;">Progress <span
+                                                    class="orange">Completed</span></p>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                        <% } %>
+                    </div>
+                    <%}%>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+      nodejs: 10
+    commands:
+      - echo Installing Project dependencies
+      - npm install --silent
+      - npm install -g jest
+      - echo Finished Installing Project dependencies
+      - npm run migrate
+      - npm run seed
+  pre_build:
+    commands:
+      - echo Testing Project
+      - echo $CODE_COMMIT_REPO
+      - jest --env=jsdom --maxWorkers=1 --json > results.json || echo $CODE_COMMIT_REPO > ./config/repo.txt
+      - cd config
+      - npm install
+      - node result.js
+      - cd ..
+      - echo Finished Testing Project
+      - sleep 5
+  build:
+    commands:
+      - echo Building Project
+      - cd config && node result.js
+      - echo Finished Building
+
+cache:
+  paths:
+    - "node_modules/**/*"

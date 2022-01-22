@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/subnav.css" />
+  <link rel="stylesheet" href="../css/index.css" />
+  <link rel="stylesheet" href="../css/typography.css" />
+  <link rel="stylesheet" href="../css/navbar.css" />
+  <title>Course</title>
+</head>
+
+<body style="background-color: #f9f9f9">
+  <div class="navbar-container"  style="height: 110px;">
+    <div class="navlogo-container">
+      <img style="width: 150px" src="../assets/logo.png" />
+    </div>
+  </div>
+
+  <div style="padding-left: 5%; padding-top: 50px;" >
+    <div class=subnav style="width: 345px; ">
+      <div class="stepper-wrapper">
+
+        <div class="stepper-item ">
+          <a href="/user/home">
+            <div class="step-counter">
+              Home
+            </div>
+          </a>
+        </div>
+        <div class="stepper-item ">
+          <div class="step-counter">
+            <%= title %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div style="padding-left: 5%; margin-top: 50px;">
+    <p class="narrow name" style="line-height: 50px;">
+      <span class="orange" style="font-size: 65px;">
+        <%= title %>
+      </span> <br>
+      <span class="blue" style="font-size: 20px; margin-left: 20px;">
+        <%= level %> Level 
+        <span class="orange">|</span> 
+        <span id='course-duration'><%= duration %></span> Duration
+        <span class="orange">|</span> 
+        <span id='students-enrolled'>xx</span> Enrollments
+      </span> 
+    </p>
+
+  </div>
+  <div class="dashboard-below-container">
+
+    
+    <div class="dashboard-left" style="width: 60%;">
+
+      <div style="padding: 0px 50px 0px 100px;">
+        <!-- <p class="progress-text blue" style="font-size: 25px; margin-top: -10px; margin-left: 10px;">Progress <span class="orange">0%</span></p> -->
+        <div class="card-body card-heading" style="padding: 5%; color: #311A75; line-height: 35px; ">
+          <p>
+            <%= description %>
+          </p>
+         
+                  <% if(registered=='yes' ) { %>
+          <a href="/course/coursePage?courseId=<%= id %>"><button class="btn" style="margin-left: 20px;">Resume</button></a>
+
+          <% }else { %>
+            <a href="/course/enroll?courseId=<%= id %>"><button class="btn" style="margin-left: 20px;">Enroll</button></a>
+          <% } %>
+        </div>
+
+          <div id="course-review-container">
+              
+          </div>
+      </div>
+    </div>
+
+    <div class="dashboard-right" style="width: 50%">
+      <p class="orange" style="
+              line-height: 35px;
+              font-size: 36px;
+              font-weight: 500;
+              color: #ffbe0b;
+            ">
+        Suggested Books
+      </p>
+      <div class="small-card-container" style="display: flex; flex-wrap: wrap; width: 100%;">
+        <% if(books.length<1){ %>
+        
+          <p class="narrow links" style="color: #E02401; margin-top: 50px; margin-left: 75px;">No Related Books Found</p>
+        
+      </div>
+      <% }else{ %>
+
+      
+        <% for (let index=0; index < books.length; index++) { %>
+
+          <div class="bookcard">
+            <p class="isbn"><span class="blue"> ISBN :</span>
+              <%= books[index].cover_edition_key %>
+            </p>
+            <p class="isbn"><span class="blue"> EDITION :</span>
+              <%= books[index].edition_count %>
+            </p>
+
+            <div class="booktitle-container">
+              <p class="booktitle">
+                <%= books[index].title %>
+              </p>
+
+            </div>
+          </div>
+          <% } %>
+        <% } %>
+    </div>
+  </div>
+  </div>
+  </div>
+</body>
+
+</html>
